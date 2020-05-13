@@ -15,7 +15,7 @@ namespace WpfMvvmTest
         public ObservableCollection<TestDTO> tests { get; set; } = new ObservableCollection<TestDTO>();
         public ObservableCollection<QuestionDTO> questions { get; set; } = new ObservableCollection<QuestionDTO>();
         public ObservableCollection<AswerOpinionDTO> aswers { get; set; } = new ObservableCollection<AswerOpinionDTO>();
-
+        //
         public void NewTest()
         {
             TestDTO testDTO = new TestDTO();
@@ -29,7 +29,7 @@ namespace WpfMvvmTest
             testDTO.Questions = new List<QuestionDTO>();
 
 
-            
+
 
             questionDTO1.AnswerList = new List<AswerOpinionDTO>();
             questionDTO2.AnswerList = new List<AswerOpinionDTO>();
@@ -49,7 +49,7 @@ namespace WpfMvvmTest
             aswerOpinionDTO2.IsTrueAnswer = false;
             aswerOpinionDTO3.IsTrueAnswer = false;
 
-      
+
 
             questionDTO1.TextQuestion = "First leng";
             questionDTO2.TextQuestion = "Second leng";
