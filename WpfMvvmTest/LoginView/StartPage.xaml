@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfMvvmTest.LoginView.StartPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:vm="clr-namespace:WpfMvvmTest.ViewModel"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfMvvmTest.LoginView"
+        mc:Ignorable="d"
+        Title="Start Page" Height="450" Width="380">
+    <Window.Resources>
+        <vm:TeacherVM x:Key="TeacherVM"/>
+        <vm:UserVM x:Key="UserVM"/>
+
+    </Window.Resources>
+    <Grid>
+       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="68*"/>
+
+        </Grid.RowDefinitions>
+
+
+
+
+
+
+        <StackPanel    Orientation="Vertical"  Grid.Row="1" Grid.ColumnSpan="2" >
+            <TextBlock Margin="0 20 0 0"
+                            Text="Test Program"
+                           FontWeight="Light"
+                           FontFamily="Halvetica"
+                           FontSize="30"
+                           Foreground="Black"
+                           HorizontalAlignment="Center"/>
+            <Button DataContext="{StaticResource TeacherVM}"
+                    Command="{Binding startPageLog}"
+                Margin="0 100 0 0"
+                    Width="170"
+                    Height="50"
+                    FontSize="18"
+                    Content="I'm a Teacher"
+                    Background="#FF19C7BF"
+                    Foreground="White"
+                   />
+            <Button DataContext="{StaticResource UserVM}"
+                    Command="{Binding startPage}"
+                    Width="170"
+                    Height="50"
+                    Background="#FF19C7BF"
+                    FontSize="18"
+                    Margin="0 20 0 0"
+                    Content="I'm a Student"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

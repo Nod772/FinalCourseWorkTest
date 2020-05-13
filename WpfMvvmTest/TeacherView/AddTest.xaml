@@ -1,0 +1,68 @@
+﻿<Window x:Class="WpfMvvmTest.TeacherView.AddTest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:vm="clr-namespace:WpfMvvmTest.ViewModel"
+        xmlns:local="clr-namespace:WpfMvvmTest.TeacherView"
+        mc:Ignorable="d"
+        Title="Add New Test" Height="502.487" Width="400"
+        >
+    <Window.Resources>
+        <vm:AddTestVM x:Key="vm"/>
+        <vm:TeacherVM x:Key="Teachervm"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource vm}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="129*"/>
+            <RowDefinition Height="211*"/>
+            <RowDefinition Height="110*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="20"
+                    Grid.Row="0"
+                    Background="#FF19C7BF">
+            <TextBlock Text="Test Name" 
+                       Foreground="White" 
+                       HorizontalAlignment="Center" 
+                       FontSize="20"/>
+
+            <TextBox Text="{Binding Nametext, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   
+                     Height="25"
+                     Width="250"/>
+
+
+        </StackPanel>
+        <ListBox ItemsSource="{Binding questions}" 
+                 Grid.Row="1">
+            <ListBox.ItemTemplate >
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding TextQuestion}" Margin="10 0 0 0" HorizontalAlignment="Center"/>
+                     
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Margin="20 20 0 0" 
+                    Grid.Row="2"
+                    Orientation="Horizontal">
+
+            <Button Command="{Binding addQuestionWindowComand}"
+                    
+                Background="#FF19C7BF" 
+                Height="50" 
+                Width="150"
+                Content="Add Question" 
+                FontSize="20"/>
+            <Button DataContext="{StaticResource Teachervm}"
+                Command="{Binding addtestComand}"
+                    CommandParameter="{Binding questions}"
+                Background="#FF19C7BF" 
+                Height="50" 
+                Width="150"
+                Content="Add Test" 
+                FontSize="20"  Margin="50 0 0 0"/>
+        </StackPanel>
+    </Grid>
+</Window>
