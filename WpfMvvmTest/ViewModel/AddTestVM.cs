@@ -11,6 +11,15 @@ using WpfMvvmTest.TeacherView;
 using WpfMvvmTest.ViewModel.Comands;
 using WpfMvvmTest.ViewModel.Helper;
 
+using WpfMvvmTest.ServiceReferenceTest;
+using WpfMvvmTest.ServiceReferenceAnswerOption;
+using WpfMvvmTest.ServiceReferenceTeacher;
+using WpfMvvmTest.ServiceReferenceQuestion;
+using TestDTO = WpfMvvmTest.ServiceReferenceTest.TestDTO;
+using QuestionDTO = WpfMvvmTest.ServiceReferenceQuestion.QuestionDTO;
+using AnswerOptionDTO = WpfMvvmTest.ServiceReferenceAnswerOption.AnswerOptionDTO;
+
+
 namespace WpfMvvmTest.ViewModel
 {
     public class AddTestVM : INotifyPropertyChanged
@@ -28,13 +37,13 @@ namespace WpfMvvmTest.ViewModel
         private TestDTO NewTest;
 
         public ObservableCollection<QuestionDTO> questions { get; set; }
-        public ObservableCollection<AswerOpinionDTO> Answers { get; set; }
+        public ObservableCollection<AnswerOptionDTO> Answers { get; set; }
 
         private QuestionDTO selectedQuestion;
 
      
 
-        private AswerOpinionDTO selectedAnswer;
+        private AnswerOptionDTO selectedAnswer;
 
         public AddQuestionCommand AddQuestionCommand { get; set; }
         public DeleteAnswerComand deleteanswerComand { get; set; }
@@ -55,7 +64,7 @@ namespace WpfMvvmTest.ViewModel
             addQuestionWindowComand = new AddQuestionWindowCommand(this);
 
             questions = new ObservableCollection<QuestionDTO>();
-            Answers = new ObservableCollection<AswerOpinionDTO>();
+            Answers = new ObservableCollection<AnswerOptionDTO>();
             NewTest = new TestDTO();
         }
         public string QuestionText
@@ -98,7 +107,7 @@ namespace WpfMvvmTest.ViewModel
 
       
 
-        public AswerOpinionDTO SelectedAnswer
+        public AnswerOptionDTO SelectedAnswer
         {
             get { return selectedAnswer; }
             set
@@ -139,7 +148,7 @@ namespace WpfMvvmTest.ViewModel
 
         internal void AddTest()
         {
-            NewTest.NameTest = Nametext;
+            NewTest.Name = Nametext;
             //AddTest()
         }
         public  void DeleteAnswer()

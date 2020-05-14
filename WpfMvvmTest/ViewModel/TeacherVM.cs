@@ -12,19 +12,31 @@ using WpfMvvmTest.Model;
 using WpfMvvmTest.TeacherView;
 using WpfMvvmTest.ViewModel.Comands;
 using WpfMvvmTest.ViewModel.Helper;
+using WpfMvvmTest.ServiceReferenceTest;
+using WpfMvvmTest.ServiceReferenceTeacher;
+using TeacherDTO = WpfMvvmTest.ServiceReferenceTeacher.TeacherDTO;
+using TestDTO = WpfMvvmTest.ServiceReferenceTest.TestDTO;
+using AnswerOptionDTO = WpfMvvmTest.ServiceReferenceAnswerOption.AnswerOptionDTO;
+using QuestionDTO = WpfMvvmTest.ServiceReferenceQuestion.QuestionDTO;
 
 namespace WpfMvvmTest.ViewModel
 {
-   public class TeacherVM:INotifyPropertyChanged
+
+    public class TeacherVM : INotifyPropertyChanged
     {
+        public static int IDCurrentTeacher { get; set; }
         private string login;
-      
+
 
         public ObservableCollection<TestDTO> tests { get; set; }
         public ObservableCollection<string> results { get; set; }
 
         private TestDTO selectedTest;
-        private TeacherDTO currentteacher;
+        public TeacherDTO currentteacher;
+
+
+
+
 
         public GetResultComandICommand getResult { get; set; }
         public RemoveComand removeComand { get; set; }
@@ -35,7 +47,7 @@ namespace WpfMvvmTest.ViewModel
         public StartPageLogCommand startPageLog { get; set; }
 
 
-        private LoginTeacher loginTeacherWidnow;      
+        private LoginTeacher loginTeacherWidnow;
         private StartPageTeacher startPageTeacherWindow;
 
         private AddTest addTestWindow;
@@ -52,20 +64,21 @@ namespace WpfMvvmTest.ViewModel
             RegisterCommand = new RegisterTeacherCommand(this);
             loginCommand = new LoginTeacherCommand(this);
             startPageLog = new StartPageLogCommand(this);
+         
 
-           
         }
-     
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public TestDTO SelectedTest
         {
             get { return selectedTest; }
-            set { 
+            set
+            {
                 selectedTest = value;
                 NotifyPropertyChanged();
-                }
+            }
         }
         public AddTest AddTestWindow
         {
@@ -81,6 +94,7 @@ namespace WpfMvvmTest.ViewModel
             get { return currentteacher; }
             set
             {
+                
                 currentteacher = value;
                 NotifyPropertyChanged();
             }
@@ -94,39 +108,50 @@ namespace WpfMvvmTest.ViewModel
                 NotifyPropertyChanged();
             }
         }
-     
+
 
         public async void Logins(string pass)
         {
-            //  await TeacherHelper.Logins(Login, pass);
+            try
+            {
+                Currentteacher = await TeacherHelper.Logins(Login, pass);
+                IDCurrentTeacher = currentteacher.ID;
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
             //    startPageTeacherWindow 
-            startPageTeacherWindow = new StartPageTeacher();
+            startPageTeacherWindow = new StartPageTeacher(this);
             startPageTeacherWindow.Show();
 
 
         }
         public async void Registers(string pass)
         {
-           
-           // if(Register)
+
+            // if(Register)
             {
                 MessageBox.Show("Login exist or field empty", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-               
+
             }
-          //  else
+            //  else
             {
                 await TeacherHelper.Registers(Login, pass);
             }
             await TeacherHelper.Logins(Login, pass);
         }
-        public async void GetTests()
+        public async void GetTests(TeacherVM teacher)
         {
-            var Newtests = await TeacherHelper.GetTests();
+            var Newtests = await TeacherHelper.GetTests(IDCurrentTeacher);
             tests.Clear();
             foreach (var item in Newtests)
             {
-               
+
                 tests.Add(item);
             }
 
@@ -135,7 +160,7 @@ namespace WpfMvvmTest.ViewModel
         {
             loginTeacherWidnow = new LoginTeacher();
             loginTeacherWidnow.Show();
-            
+
         }
         public async void GetResult()
         {
@@ -147,7 +172,7 @@ namespace WpfMvvmTest.ViewModel
             }
 
         }
-        public  void CreateTest()
+        public void CreateTest()
         {
             addTestWindow = new AddTest();
             addTestWindow.Show();
@@ -158,7 +183,7 @@ namespace WpfMvvmTest.ViewModel
         {
             TeacherHelper.RemoveTest(selectedTest);
         }
-        public void NotifyPropertyChanged([CallerMemberName] string propertyname="")
+        public void NotifyPropertyChanged([CallerMemberName] string propertyname = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }

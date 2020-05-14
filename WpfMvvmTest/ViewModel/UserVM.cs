@@ -13,6 +13,14 @@ using WpfMvvmTest.UserView;
 using WpfMvvmTest.ViewModel.Helper;
 using WpfMvvmTest.ViewModel.UserComands;
 
+using WpfMvvmTest.ServiceReferenceTest;
+using WpfMvvmTest.ServiceReferenceAnswerOption;
+using WpfMvvmTest.ServiceReferenceTeacher;
+using WpfMvvmTest.ServiceReferenceQuestion;
+using TestDTO = WpfMvvmTest.ServiceReferenceTest.TestDTO;
+using QuestionDTO = WpfMvvmTest.ServiceReferenceQuestion.QuestionDTO;
+using AnswerOptionDTO = WpfMvvmTest.ServiceReferenceAnswerOption.AnswerOptionDTO;
+
 namespace WpfMvvmTest.ViewModel
 {
     public class UserVM : INotifyPropertyChanged
@@ -23,7 +31,7 @@ namespace WpfMvvmTest.ViewModel
         private TestDTO selectedTest;
         public ObservableCollection <QuestionDTO> questions { get; set; }
         private QuestionDTO selectedQuestion;
-        public ObservableCollection<AswerOpinionDTO> answers { get; set; }
+        public ObservableCollection<AnswerOptionDTO> answers { get; set; }
 
         public GetQuestionsCommand getQuestionscommacd { get; set; }
         public StartTestCommand startComand { get; set; }
@@ -41,7 +49,7 @@ namespace WpfMvvmTest.ViewModel
         public UserVM()
         {
             questions = new ObservableCollection<QuestionDTO>();
-            answers = new ObservableCollection<AswerOpinionDTO>();
+            answers = new ObservableCollection<AnswerOptionDTO>();
 
 
             getQuestionscommacd = new GetQuestionsCommand(this);

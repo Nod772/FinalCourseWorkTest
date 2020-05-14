@@ -48,5 +48,10 @@ namespace BaseTestLib.Classes
             t.PassedTest.Add(st);
         }
        
+        public ICollection<Test> GetTestFromSomeTeacher(int idTeacher)
+        {
+            var t = Set.FirstOrDefault(x => x.ID == idTeacher);
+            return t.Tests;
+        }
     }
 }

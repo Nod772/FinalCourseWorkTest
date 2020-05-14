@@ -5,6 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfMvvmTest.Model;
 
+using WpfMvvmTest.ServiceReferenceTest;
+using WpfMvvmTest.ServiceReferenceAnswerOption;
+using WpfMvvmTest.ServiceReferenceTeacher;
+using WpfMvvmTest.ServiceReferenceQuestion;
+using TestDTO = WpfMvvmTest.ServiceReferenceTest.TestDTO;
+using QuestionDTO = WpfMvvmTest.ServiceReferenceQuestion.QuestionDTO;
+using AnswerOptionDTO = WpfMvvmTest.ServiceReferenceAnswerOption.AnswerOptionDTO;
+
+
 namespace WpfMvvmTest.ViewModel.Helper
 {
    public class UserHepler
@@ -24,10 +33,10 @@ namespace WpfMvvmTest.ViewModel.Helper
             tests.Add(item);
             }
           
-            if(tests.Find(x => x.NameTest == testName)!=null)
+            if(tests.Find(x => x.Name == testName)!=null)
             {
 
-            return tests.Find(x => x.NameTest == testName);
+            return tests.Find(x => x.Name == testName);
             }
             else
             {
@@ -44,9 +53,9 @@ namespace WpfMvvmTest.ViewModel.Helper
             TestDTO test = await GetTest(testName);           
             List<QuestionDTO> questions = new List<QuestionDTO>();
           
-            foreach (var item in test.Questions)
+            foreach (var item in test.QuestionsDTO)
             {
-                questions.Add(item);
+               // questions.Add(item);
               
             }
            
@@ -54,15 +63,15 @@ namespace WpfMvvmTest.ViewModel.Helper
 
             return questions;
         }
-        public static async Task<List<AswerOpinionDTO>> GetAnswers(TestDTO test,QuestionDTO question)
+        public static async Task<List<AnswerOptionDTO>> GetAnswers(TestDTO test,QuestionDTO question)
         {
             //TestthisProg testthisProg = new TestthisProg();
             //testthisProg.NewTest();
-            List<AswerOpinionDTO> aswerOpinions = new List<AswerOpinionDTO>();
+            List<AnswerOptionDTO> aswerOpinions = new List<AnswerOptionDTO>();
 
-            AswerOpinionDTO aswerOpinionDTO1 = new AswerOpinionDTO();
-            AswerOpinionDTO aswerOpinionDTO2 = new AswerOpinionDTO();
-            AswerOpinionDTO aswerOpinionDTO3 = new AswerOpinionDTO();
+            AnswerOptionDTO aswerOpinionDTO1 = new AnswerOptionDTO();
+            AnswerOptionDTO aswerOpinionDTO2 = new AnswerOptionDTO();
+            AnswerOptionDTO aswerOpinionDTO3 = new AnswerOptionDTO();
 
             aswerOpinions.Add(aswerOpinionDTO1);
             aswerOpinions.Add(aswerOpinionDTO2);
@@ -70,7 +79,7 @@ namespace WpfMvvmTest.ViewModel.Helper
 
             //  QuestionDTO questionDTO = testthisProg.questions.First(x=>x==question);
 
-            List<AswerOpinionDTO> aswers = new List<AswerOpinionDTO>();
+            List<AnswerOptionDTO> aswers = new List<AnswerOptionDTO>();
 
             foreach (var item in aswerOpinions)
             {
