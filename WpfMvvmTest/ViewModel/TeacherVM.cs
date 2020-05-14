@@ -64,7 +64,7 @@ namespace WpfMvvmTest.ViewModel
             RegisterCommand = new RegisterTeacherCommand(this);
             loginCommand = new LoginTeacherCommand(this);
             startPageLog = new StartPageLogCommand(this);
-         
+
 
         }
 
@@ -94,7 +94,7 @@ namespace WpfMvvmTest.ViewModel
             get { return currentteacher; }
             set
             {
-                
+
                 currentteacher = value;
                 NotifyPropertyChanged();
             }
@@ -117,16 +117,16 @@ namespace WpfMvvmTest.ViewModel
                 Currentteacher = await TeacherHelper.Logins(Login, pass);
                 IDCurrentTeacher = currentteacher.ID;
 
+                startPageTeacherWindow = new StartPageTeacher(this);
+                startPageTeacherWindow.Show();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
+
             }
 
             //    startPageTeacherWindow 
-            startPageTeacherWindow = new StartPageTeacher(this);
-            startPageTeacherWindow.Show();
 
 
         }

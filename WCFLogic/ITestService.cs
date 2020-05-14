@@ -23,6 +23,8 @@ namespace WCFLogic
         IEnumerable<TestDTO> TestFromTeacher(int IDTeacher);
         [OperationContract]
         int GetResultFromTest(int idTest, List<QuestionDTO> testQuestionsFromUser, string nameUser);
+        [OperationContract]
+        TestDTO GetTestByName(string name);
     }
 
 

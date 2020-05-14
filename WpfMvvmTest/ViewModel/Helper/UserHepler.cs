@@ -12,82 +12,130 @@ using WpfMvvmTest.ServiceReferenceQuestion;
 using TestDTO = WpfMvvmTest.ServiceReferenceTest.TestDTO;
 using QuestionDTO = WpfMvvmTest.ServiceReferenceQuestion.QuestionDTO;
 using AnswerOptionDTO = WpfMvvmTest.ServiceReferenceAnswerOption.AnswerOptionDTO;
-
+using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace WpfMvvmTest.ViewModel.Helper
 {
-   public class UserHepler
+    public class UserHepler
     {
         public static async Task<TestDTO> GetTest(string testName)
         {
-            TestthisProg testthisProg = new TestthisProg();
-            testthisProg.NewTest();
-            //  using()
+
+            TestServiceClient proxyTest = new TestServiceClient();
+            try
             {
+                var test = await proxyTest.GetTestByNameAsync(testName);
+                return test;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Test Not Found");
 
             }
-            List<TestDTO> tests = new List<TestDTO>();
-            foreach (var item in testthisProg.tests)
-            {
+            return null;
 
-            tests.Add(item);
-            }
-          
-            if(tests.Find(x => x.Name == testName)!=null)
-            {
-
-            return tests.Find(x => x.Name == testName);
-            }
-            else
-            {
-                throw new Exception("Not Founded");
-            }
         }
-        public static async Task<List<QuestionDTO>> GetQuestions(string testName)
+        //public static async Task<List<QuestionDTO>> GetQuestions(string testName)
+        //{
+
+        //    TestthisProg testthisProg = new TestthisProg();
+        //    testthisProg.NewTest();
+
+
+        //    TestDTO test = await GetTest(testName);
+        //    List<QuestionDTO> questions = new List<QuestionDTO>();
+
+        //    foreach (var item in test.QuestionsDTO)
+        //    {
+        //        // questions.Add(item);
+
+        //    }
+
+
+
+        //    return questions;
+        //}
+        public static async Task<ObservableCollection<AnswerOptionDTO>> GetAnswers(QuestionDTO question)
         {
-
-            TestthisProg testthisProg = new TestthisProg();
-            testthisProg.NewTest();
-
-
-            TestDTO test = await GetTest(testName);           
-            List<QuestionDTO> questions = new List<QuestionDTO>();
-          
-            foreach (var item in test.QuestionsDTO)
-            {
-               // questions.Add(item);
-              
-            }
-           
-
-
-            return questions;
-        }
-        public static async Task<List<AnswerOptionDTO>> GetAnswers(TestDTO test,QuestionDTO question)
-        {
+            AnswerOptionServiceClient proxyAnswerOption = new AnswerOptionServiceClient();
             //TestthisProg testthisProg = new TestthisProg();
-            //testthisProg.NewTest();
-            List<AnswerOptionDTO> aswerOpinions = new List<AnswerOptionDTO>();
+            ////testthisProg.NewTest();
 
-            AnswerOptionDTO aswerOpinionDTO1 = new AnswerOptionDTO();
-            AnswerOptionDTO aswerOpinionDTO2 = new AnswerOptionDTO();
-            AnswerOptionDTO aswerOpinionDTO3 = new AnswerOptionDTO();
+            //AnswerOptionDTO aswerOpinionDTO1 = new AnswerOptionDTO();
+            //AnswerOptionDTO aswerOpinionDTO2 = new AnswerOptionDTO();
+            //AnswerOptionDTO aswerOpinionDTO3 = new AnswerOptionDTO();
 
-            aswerOpinions.Add(aswerOpinionDTO1);
-            aswerOpinions.Add(aswerOpinionDTO2);
-            aswerOpinions.Add(aswerOpinionDTO3);
+            //aswerOpinions.Add(aswerOpinionDTO1);
+            //aswerOpinions.Add(aswerOpinionDTO2);
+            //aswerOpinions.Add(aswerOpinionDTO3);
 
             //  QuestionDTO questionDTO = testthisProg.questions.First(x=>x==question);
 
-            List<AnswerOptionDTO> aswers = new List<AnswerOptionDTO>();
 
-            foreach (var item in aswerOpinions)
+            //    List<AnswerOptionDTO> aswerOpinions = new List<AnswerOptionDTO>();
+            //  List<AnswerOptionDTO> answerOptions=
+            #region MyRegion
+
+            ObservableCollection<AnswerOptionDTO> aswers = new ObservableCollection<AnswerOptionDTO>(await proxyAnswerOption.GetAnswerOptionsFromQuestionAsync(question.ID));
+            //var t = new ObservableCollection<AnswerOptionDTO>(await proxyAnswerOption.GetAnswerOptionsFromQuestionAsync(question.ID)).ToList();
+
+            try
             {
-                aswers.Add(item);
 
+                for (int i = 0; i < aswers.Count; i++)
+                {
+                    //question.AnswerOptionsDTO. (t[i]);
+                    aswers.Add(aswers[i]);
+                    if (question.AnswerOptionsDTO[i].isTrueAnswer == true)
+                    {
+
+                        aswers[i].isTrueAnswer = true;
+                    }
+                    else
+                    {
+                        aswers[i].isTrueAnswer = false;
+
+                    }
+
+
+                }
             }
+            catch (Exception)
+            {
+                aswers.Remove(aswers.Last());
+            
+            }
+            #endregion
+            //ObservableCollection<AswerOpinionDTO> aswers = new ObservableCollection<AswerOpinionDTO>();
+
+
+
+            //foreach (var item in question.AnswerOptionsDTO)
+            //{
+            //    aswers.Add(item);
+
+
+
+            //}
+
+
 
             return aswers;
+
+            //foreach (var item in t)
+            //{
+            //    aswers.Add(item);
+            //}
+            //for (int i = 0; i < t.Length; i++)
+            //{
+            //    aswers.Add(t[i]);
+            //}
+            //return question.AnswerOptionsDTO;
+
+
+            return aswers;
+
         }
 
 

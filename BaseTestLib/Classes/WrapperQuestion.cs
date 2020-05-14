@@ -25,7 +25,9 @@ namespace BaseTestLib.Classes
         }
         public  IEnumerable<Question> GetItemsParent(int id)
         {
-            return Set.Where(x=>x.Test.ID==id);
+         //   var test= Set.Where(x=>x.Test.ID==id);
+            return context.Questions.Where(x => x.Test.ID == id);
+           
         }
     }
 }

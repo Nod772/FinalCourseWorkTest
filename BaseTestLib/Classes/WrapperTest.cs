@@ -30,6 +30,12 @@ namespace BaseTestLib.Classes
 
             return t;
         }
+        public Test GetTest(string name)
+        {
+            var t = Set.FirstOrDefault(x => x.Name ==name);
+
+            return t;
+        }
 
         public IEnumerable<Test> GetTests(int id)
         {

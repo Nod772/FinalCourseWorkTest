@@ -105,6 +105,15 @@ namespace WCFLogic
             var t = mapper.Map<Test, TestDTO>(current);
             return t.QuestionsDTO;
         }
+        public TestDTO GetTestByName(string name)
+        {
+            Test current = (wrapper as WrapperTest).GetTest(name);
+            var t = mapper.Map<Test, TestDTO>(current);
+       
+            return t;
+
+        }
+
         public IEnumerable<TestDTO> TestFromTeacher(int id)
         {
             var t = mapper.Map<IEnumerable<Test>, IEnumerable<TestDTO>>((wrapper as WrapperTest).GetTests(id));
@@ -112,6 +121,7 @@ namespace WCFLogic
             return t;
 
         }
+
 
     }
 }

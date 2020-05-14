@@ -40,7 +40,7 @@
         <StackPanel   Margin="0 0 0 0" 
                       Grid.Row="1" Orientation="Horizontal">
            
-            <TextBlock Text="{Binding SelectedTest.NameTest}"  
+            <TextBlock Text="{Binding SelectedTest.Name}"  
                        FontSize="20"  
                        Margin="20 0 0 0"
                        TextWrapping="Wrap" Width="444"/>

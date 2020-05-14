@@ -101,9 +101,9 @@ namespace WpfMvvmTest.ViewModel.Helper
                 MessageBox.Show("You in System");
                 return teacher;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
 
             }
 

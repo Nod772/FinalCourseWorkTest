@@ -892,6 +892,12 @@ namespace WpfMvvmTest.ServiceReferenceTest {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestService/GetResultFromTest", ReplyAction="http://tempuri.org/ITestService/GetResultFromTestResponse")]
         System.Threading.Tasks.Task<int> GetResultFromTestAsync(int idTest, WpfMvvmTest.ServiceReferenceTest.QuestionDTO[] testQuestionsFromUser, string nameUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestService/GetTestByName", ReplyAction="http://tempuri.org/ITestService/GetTestByNameResponse")]
+        WpfMvvmTest.ServiceReferenceTest.TestDTO GetTestByName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestService/GetTestByName", ReplyAction="http://tempuri.org/ITestService/GetTestByNameResponse")]
+        System.Threading.Tasks.Task<WpfMvvmTest.ServiceReferenceTest.TestDTO> GetTestByNameAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -967,6 +973,14 @@ namespace WpfMvvmTest.ServiceReferenceTest {
         
         public System.Threading.Tasks.Task<int> GetResultFromTestAsync(int idTest, WpfMvvmTest.ServiceReferenceTest.QuestionDTO[] testQuestionsFromUser, string nameUser) {
             return base.Channel.GetResultFromTestAsync(idTest, testQuestionsFromUser, nameUser);
+        }
+        
+        public WpfMvvmTest.ServiceReferenceTest.TestDTO GetTestByName(string name) {
+            return base.Channel.GetTestByName(name);
+        }
+        
+        public System.Threading.Tasks.Task<WpfMvvmTest.ServiceReferenceTest.TestDTO> GetTestByNameAsync(string name) {
+            return base.Channel.GetTestByNameAsync(name);
         }
     }
 }
