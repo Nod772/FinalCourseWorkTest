@@ -6,63 +6,107 @@
        xmlns:vm="clr-namespace:WpfMvvmTest.ViewModel"
         xmlns:local="clr-namespace:WpfMvvmTest.TeacherView"
         mc:Ignorable="d"
-        Title="Add New Test" Height="502.487" Width="400"
+        Title="Add New Test" Height="450" Width="800"
         >
     <Window.Resources>
         <vm:AddTestVM x:Key="vm"/>
-        <vm:TeacherVM x:Key="Teachervm"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource vm}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="129*"/>
-            <RowDefinition Height="211*"/>
-            <RowDefinition Height="110*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Margin="20"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="571*"/>
+            <ColumnDefinition Width="221*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Margin="21,10,10,337"
                     Grid.Row="0"
-                    Background="#FF19C7BF">
+                    Background="#FF19C7BF" Grid.Column="1">
             <TextBlock Text="Test Name" 
                        Foreground="White" 
                        HorizontalAlignment="Center" 
                        FontSize="20"/>
 
             <TextBox Text="{Binding Nametext, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   
-                     Height="25"
-                     Width="250"/>
+                     TextWrapping="Wrap" FontSize="11" Height="19"/>
 
 
         </StackPanel>
-        <ListBox ItemsSource="{Binding questions}" 
-                 Grid.Row="1">
-            <ListBox.ItemTemplate >
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding TextQuestion}" Margin="10 0 0 0" HorizontalAlignment="Center"/>
-                     
+        <TextBlock Text="Questions" FontSize="20" Margin="5 0 0 0"/>
+        <TextBlock Text="Answers" FontSize="20" Margin="145 0 0 0"/>
+        <TextBlock Text="IsTrue" FontSize="20" Margin="500 0 0 0"/>
 
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Margin="20 20 0 0" 
-                    Grid.Row="2"
-                    Orientation="Horizontal">
 
-            <Button Command="{Binding addQuestionWindowComand}"
-                    
+        <StackPanel Margin="0,26,0,0">
+
+            <ListBox  ItemsSource="{Binding questions}"
+                      SelectedItem="{Binding SelectedQuestion}"
+                      Height="390" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Width="536">
+                            <TextBox TextWrapping="Wrap" 
+                                     Background="#FF19C7BF"
+                                     FontFamily="White"
+                                     Text="{Binding TextQuestion,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" 
+                                     VerticalAlignment="Top"
+                                     Width="136" Height="62"/>
+                            <ListBox ItemsSource="{Binding Answers}" 
+                                     SelectedItem="{Binding SelectedAnswer}"
+                                     Width="400" Height="127">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    VerticalAlignment="Center" 
+                                                    Height="52"
+                                                    Width="244">
+                                            <TextBox Text="{Binding AnswerText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                     Background="#FF19C7BF"
+                                                        FontFamily="White"
+                                                     VerticalAlignment="Center"
+                                                     Width="224" 
+                                                     Height="17" 
+                                                     Margin="0,17,0,18"/>
+                                            <CheckBox 
+                                      IsChecked="{Binding Answers.IsTrueAnswer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+
+
+
+        <Button Command="{Binding addanswerComand}" 
+                CommandParameter="{Binding Answertext}"
+                FontSize="15" 
+                Content="Add Answer" 
                 Background="#FF19C7BF" 
-                Height="50" 
-                Width="150"
-                Content="Add Question" 
-                FontSize="20"/>
-            <Button DataContext="{StaticResource Teachervm}"
+                Margin="40,185,21,183" Grid.Column="1"/>
+        <Button Command="{Binding deleteanswerComand}"
+                CommandParameter="{Binding SelectedAnswer}"
+                FontSize="15"
+                Content="Delete Answer"
+                Background="#FF19C7BF"
+                Margin="40,241,21,126" Grid.Column="1"/>
+        <Button 
                 Command="{Binding addtestComand}"
                     CommandParameter="{Binding questions}"
-                Background="#FF19C7BF" 
-                Height="50" 
-                Width="150"
+                Background="#FF19C7BF"
                 Content="Add Test" 
-                FontSize="20"  Margin="50 0 0 0"/>
-        </StackPanel>
+                FontSize="20"  Margin="40,315,21,41" Grid.Column="1"/>
+
+        <Button Command="{Binding AddQuestionCommand}"  
+                
+                FontSize="15" 
+                Content="Add Question" 
+                Background="#FF19C7BF" 
+                Margin="40,102,21,260" Grid.Column="1"/>
     </Grid>
 </Window>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfMvvmTest.ViewModel;
 
 namespace WpfMvvmTest.UserView
 {
@@ -19,9 +20,13 @@ namespace WpfMvvmTest.UserView
     /// </summary>
     public partial class UserTests : Window
     {
-        public UserTests()
+        public UserVM user { get; set; }
+        public UserTests(UserVM vm)
         {
             InitializeComponent();
+            user = vm;
+            user.GetQuestions();
+            this.DataContext = user;
         }
     }
 }

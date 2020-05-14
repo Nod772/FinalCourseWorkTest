@@ -39,17 +39,27 @@ namespace WpfMvvmTest
             AswerOpinionDTO aswerOpinionDTO1 = new AswerOpinionDTO();
             AswerOpinionDTO aswerOpinionDTO2 = new AswerOpinionDTO();
             AswerOpinionDTO aswerOpinionDTO3 = new AswerOpinionDTO();
+            AswerOpinionDTO aswerOpinionDTO4 = new AswerOpinionDTO();
+            AswerOpinionDTO aswerOpinionDTO5 = new AswerOpinionDTO();
+            AswerOpinionDTO aswerOpinionDTO6 = new AswerOpinionDTO();
+
+
 
 
             aswerOpinionDTO1.AnswerText = "C#";
             aswerOpinionDTO2.AnswerText = "C++";
             aswerOpinionDTO3.AnswerText = "Java";
+            aswerOpinionDTO4.AnswerText = "JavaScript";
+            aswerOpinionDTO5.AnswerText = "Java++";
+            aswerOpinionDTO6.AnswerText = "Java++C";
 
-            aswerOpinionDTO1.IsTrueAnswer = true;
+
+            aswerOpinionDTO1.IsTrueAnswer = false;
             aswerOpinionDTO2.IsTrueAnswer = false;
             aswerOpinionDTO3.IsTrueAnswer = false;
-
-
+            aswerOpinionDTO5.IsTrueAnswer = false;
+            aswerOpinionDTO4.IsTrueAnswer = false;
+            aswerOpinionDTO6.IsTrueAnswer = false;
 
             questionDTO1.TextQuestion = "First leng";
             questionDTO2.TextQuestion = "Second leng";
@@ -62,11 +72,11 @@ namespace WpfMvvmTest
             questionDTO1.AnswerList.Add(aswerOpinionDTO3);
 
 
-            questionDTO2.AnswerList.Add(aswerOpinionDTO1);
-            questionDTO2.AnswerList.Add(aswerOpinionDTO2);
+            questionDTO2.AnswerList.Add(aswerOpinionDTO4);
+            questionDTO2.AnswerList.Add(aswerOpinionDTO5);
 
 
-            questionDTO3.AnswerList.Add(aswerOpinionDTO1);
+            questionDTO3.AnswerList.Add(aswerOpinionDTO6);
 
 
             testDTO.NameTest = "N";

@@ -101,6 +101,8 @@ namespace WpfMvvmTest.ViewModel
             //  await TeacherHelper.Logins(Login, pass);
             //    startPageTeacherWindow 
             startPageTeacherWindow = new StartPageTeacher();
+            Application.Current.MainWindow.Close();
+
             startPageTeacherWindow.Show();
 
 
@@ -134,6 +136,8 @@ namespace WpfMvvmTest.ViewModel
         public void StartPageLog()
         {
             loginTeacherWidnow = new LoginTeacher();
+            Application.Current.MainWindow.Close();
+
             loginTeacherWidnow.Show();
             
         }
@@ -150,6 +154,8 @@ namespace WpfMvvmTest.ViewModel
         public  void CreateTest()
         {
             addTestWindow = new AddTest();
+            Application.Current.MainWindow.Close();
+
             addTestWindow.Show();
 
 

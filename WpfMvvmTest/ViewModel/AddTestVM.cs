@@ -18,7 +18,7 @@ namespace WpfMvvmTest.ViewModel
         private string nametext;
         private string questiontext;
         private string answertext;
-        private bool istrue=false;
+        private bool istrue = false;
 
 
 
@@ -32,18 +32,18 @@ namespace WpfMvvmTest.ViewModel
 
         private QuestionDTO selectedQuestion;
 
-     
+
 
         private AswerOpinionDTO selectedAnswer;
 
         public AddQuestionCommand AddQuestionCommand { get; set; }
         public DeleteAnswerComand deleteanswerComand { get; set; }
         public AddAsnwerComand addanswerComand { get; set; }
-       
+
         public AddQuestionWindowCommand addQuestionWindowComand { get; set; }
 
 
-        private AddQuestion addQuestionWindow;
+
 
         public AddTestVM()
         {
@@ -51,7 +51,7 @@ namespace WpfMvvmTest.ViewModel
             AddQuestionCommand = new AddQuestionCommand(this);
             deleteanswerComand = new DeleteAnswerComand(this);
             addanswerComand = new AddAsnwerComand(this);
-         
+
             addQuestionWindowComand = new AddQuestionWindowCommand(this);
 
             questions = new ObservableCollection<QuestionDTO>();
@@ -94,9 +94,9 @@ namespace WpfMvvmTest.ViewModel
                 NotifyPropertyChanged();
             }
         }
-      
 
-      
+
+
 
         public AswerOpinionDTO SelectedAnswer
         {
@@ -118,22 +118,22 @@ namespace WpfMvvmTest.ViewModel
             }
         }
 
-        public  void AddQuestioncommand()
+        public void AddQuestioncommand()
         {
 
-           questions.Add(SelectedQuestion);
+            questions.Add(SelectedQuestion);
 
         }
         public void AddQuestionWindow()
         {
-            addQuestionWindow = new AddQuestion();
-            addQuestionWindow.Show();
+            // Application.Current
+
         }
-        public  void AddAnswer()//////////////
+        public void AddAnswer()//////////////
         {
             Answers.Add(SelectedAnswer);
-//Answers.Add(aswer);
-            
+            //Answers.Add(aswer);
+
 
         }
 
@@ -142,12 +142,12 @@ namespace WpfMvvmTest.ViewModel
             NewTest.NameTest = Nametext;
             //AddTest()
         }
-        public  void DeleteAnswer()
+        public void DeleteAnswer()
         {
             Answers.Remove(SelectedAnswer);
 
         }
-     
+
         public void NotifyPropertyChanged([CallerMemberName] string propertyname = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));

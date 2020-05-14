@@ -21,14 +21,16 @@ namespace WpfMvvmTest.ViewModel
        private string testName;
 
         private TestDTO selectedTest;
+
         public ObservableCollection <QuestionDTO> questions { get; set; }
         private QuestionDTO selectedQuestion;
         public ObservableCollection<AswerOpinionDTO> answers { get; set; }
+        public AswerOpinionDTO selectedAnswer;
 
         public GetQuestionsCommand getQuestionscommacd { get; set; }
         public StartTestCommand startComand { get; set; }
 
-       
+    
 
         public EndCommand endComand { get; set; }
         public FindCommand findComand { get; set; }
@@ -50,8 +52,8 @@ namespace WpfMvvmTest.ViewModel
             findComand = new FindCommand(this);
             logStud = new LogStudCommand(this);
             startPage = new StartPageLogCommand(this);
+           
 
-          
         }
 
         
@@ -61,11 +63,24 @@ namespace WpfMvvmTest.ViewModel
             get { return selectedQuestion; }
             set
             {
+               
                 selectedQuestion = value;
                 GetAnswers();
                 NotifyPropertyChanged();
             }
         }
+
+
+        public AswerOpinionDTO SelectedAnswer
+        {
+            get { return selectedAnswer; }
+            set
+            {
+                selectedAnswer = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public TestDTO SelectedTest
         {
             get { return selectedTest; }
@@ -75,6 +90,7 @@ namespace WpfMvvmTest.ViewModel
                 NotifyPropertyChanged();
             }
         }
+      
         public string TestName
         {
             get { return testName; }
@@ -97,6 +113,8 @@ namespace WpfMvvmTest.ViewModel
         {
           
             userChoose = new UserChoose();
+         //   Application.Current.MainWindow.Close();
+
             userChoose.Show();
 
 
@@ -104,13 +122,18 @@ namespace WpfMvvmTest.ViewModel
         public void StartPageLogStud()
         {
             loginStudent = new LoginStudent();
+            Application.Current.MainWindow.Close();
             loginStudent.Show();
         }
-        public async void StartTesting()
+       
+        public  void StartTesting()
         {
 
-            GetQuestions();
-            userTests = new UserTests();
+       
+
+            userTests = new UserTests(this);
+            Application.Current.MainWindow.Close();
+         
             userTests.Show();
           
 
@@ -136,10 +159,11 @@ namespace WpfMvvmTest.ViewModel
         {
             //
         }
-        public async void GetQuestions()
+        public  void GetQuestions()
         {
-            var Newquestions = await UserHepler.GetQuestions(TestName);
-            questions.Clear();
+            
+            var Newquestions = SelectedTest.Questions;
+            if(SelectedQuestion==null)
                 SelectedQuestion = Newquestions[0];
             for (int i=0;i<Newquestions.Count;i++)
             {
@@ -151,7 +175,7 @@ namespace WpfMvvmTest.ViewModel
 
         public async void GetAnswers()
         {
-            var answ = await UserHepler.GetAnswers(SelectedTest, SelectedQuestion);
+            var answ = await UserHepler.GetAnswers( SelectedQuestion);
             answers.Clear();
             foreach (var item in answ)
             {

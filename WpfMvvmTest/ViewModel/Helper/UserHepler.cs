@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,25 +55,45 @@ namespace WpfMvvmTest.ViewModel.Helper
 
             return questions;
         }
-        public static async Task<List<AswerOpinionDTO>> GetAnswers(TestDTO test,QuestionDTO question)
+
+        public static async Task<bool> CrTesting(TestDTO testName,QuestionDTO question)
+        {
+
+
+
+            if (testName.Questions.Find(x => x == question) == null)
+            {
+               
+            return true;
+            }
+            return false;
+
+        }
+
+        public static async Task<ObservableCollection<AswerOpinionDTO>> GetAnswers(QuestionDTO question)
         {
             //TestthisProg testthisProg = new TestthisProg();
             //testthisProg.NewTest();
-            List<AswerOpinionDTO> aswerOpinions = new List<AswerOpinionDTO>();
+            //ObservableCollection<AswerOpinionDTO> aswerOpinions = new ObservableCollection<AswerOpinionDTO>();
 
-            AswerOpinionDTO aswerOpinionDTO1 = new AswerOpinionDTO();
-            AswerOpinionDTO aswerOpinionDTO2 = new AswerOpinionDTO();
-            AswerOpinionDTO aswerOpinionDTO3 = new AswerOpinionDTO();
+            //AswerOpinionDTO aswerOpinionDTO1 = new AswerOpinionDTO();
+            //AswerOpinionDTO aswerOpinionDTO2 = new AswerOpinionDTO();
+            //AswerOpinionDTO aswerOpinionDTO3 = new AswerOpinionDTO();
 
-            aswerOpinions.Add(aswerOpinionDTO1);
-            aswerOpinions.Add(aswerOpinionDTO2);
-            aswerOpinions.Add(aswerOpinionDTO3);
+            //aswerOpinionDTO1.AnswerText = "FirstAnswer";
+            //aswerOpinionDTO2.AnswerText = "SecondAnswer";
+            //aswerOpinionDTO3.AnswerText = "ThirdAnswer";
+
+
+            //aswerOpinions.Add(aswerOpinionDTO1);
+            //aswerOpinions.Add(aswerOpinionDTO2);
+            //aswerOpinions.Add(aswerOpinionDTO3);
 
             //  QuestionDTO questionDTO = testthisProg.questions.First(x=>x==question);
 
-            List<AswerOpinionDTO> aswers = new List<AswerOpinionDTO>();
+            ObservableCollection<AswerOpinionDTO> aswers = new ObservableCollection<AswerOpinionDTO>();
 
-            foreach (var item in aswerOpinions)
+            foreach (var item in question.AnswerList)
             {
                 aswers.Add(item);
 
