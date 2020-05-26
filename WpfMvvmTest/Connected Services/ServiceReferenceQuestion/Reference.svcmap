@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="201a03db-0bb8-453e-9518-ec83d28d7e90" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/WCFLogic/QuestionService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="d31ca5a0-c667-4d2b-9451-aa3b174c2aba" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFLogic/QuestionService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="f9431a3e-bdbe-46ed-bb18-283b98d5f046" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFLogic/QuestionService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="e7693da2-b9ee-492f-9053-87d1da9269ec" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFLogic/QuestionService/mex" />
+    <MetadataFile FileName="WCFLogic.DTO.xsd" MetadataType="Schema" ID="26cfb355-c6f9-43e2-8b02-44905f6ce86e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFLogic/QuestionService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="a52c46d6-e255-4dbe-8006-051cbaddc9ba" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFLogic/QuestionService/mex" />
+    <MetadataFile FileName="BaseTestLib.xsd" MetadataType="Schema" ID="93d7763c-df02-4216-b5ea-4ff7b06aeb56" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCFLogic/QuestionService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -10,7 +10,7 @@ namespace WCFLogic.DTO
     {
         public QuestionDTO()
         {
-            AnswerOptionsDTO = new HashSet<AnswerOptionDTO>();
+            AnswerOptionsDTO = new List<AnswerOptionDTO>();
             TestDTO = new TestDTO();
         }
 

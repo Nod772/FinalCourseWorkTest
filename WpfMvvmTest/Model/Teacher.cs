@@ -7,9 +7,9 @@ using WpfMvvmTest.Model;
 
 namespace WpfMvvmTest
 {
-  public  class TeacherDTO
+  public  class MyTeacherDTO
     {
-        public  List<TestDTO> Tests { get; set; }
+        public  List<MyTestDTO> Tests { get; set; }
         public List<string> PassedTests { get;set; }
     }
    

@@ -160,6 +160,7 @@
                                FontSize="15"
                                VerticalAlignment="Center"
                                Foreground="Black"/>
+                    <Label Visibility="Collapsed" Name="idTeacher" Content="{Binding}"></Label>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -187,7 +188,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding NameTest}"/>
+                            <TextBlock Text="{Binding Name}"/>
                          </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

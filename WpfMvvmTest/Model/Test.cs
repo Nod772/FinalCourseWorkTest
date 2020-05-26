@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace WpfMvvmTest.Model
 {
-    public class TestDTO
+    public class MyTestDTO
     {
         public string NameTest { get; set; }
-        public List<QuestionDTO> Questions { get; set; }
+        public List<MyQuestionDTO> Questions { get; set; }
        
        
     }
-    public class QuestionDTO
+    public class MyQuestionDTO
     {
        
         public string TextQuestion { get; set; }
-        public List<AswerOpinionDTO> AnswerList { get; set; }
+        public List<MyAswerOpinionDTO> AnswerList { get; set; }
         
     }
-    public class AswerOpinionDTO
+    public class MyAswerOpinionDTO
     {
-        public string AnswerText { get; set; }
+        public string AnswerText  { get; set; }
         public bool IsTrueAnswer { get; set; }
     }
 }

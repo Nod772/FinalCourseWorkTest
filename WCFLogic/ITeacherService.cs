@@ -24,6 +24,8 @@ namespace WCFLogic
         IEnumerable<ListTeacher> GetListTeachers();
         [OperationContract]
         void DeleteTeacherByID(int IDTeacher);
+        [OperationContract]
+        ICollection<TestDTO> GetTestFromSomeTeacher(int idTeacher);
 
         // TODO: Добавьте здесь операции служб
     }

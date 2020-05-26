@@ -36,7 +36,7 @@ namespace WpfMvvmTest.ViewModel
 
         public void Execute(object parameter)
         {
-            VM.GetTests();
+            VM.GetTests(VM);
         }
     }
 }

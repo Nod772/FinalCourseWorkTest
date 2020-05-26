@@ -63,7 +63,7 @@ namespace WCFLogic
             {
                 list.Add(new ListTeacher { ID = item.ID, Name = item.Name });
             }
-            
+
             return list;
         }
         public void DeleteTeacherByID(int IDTeacher)
@@ -73,9 +73,14 @@ namespace WCFLogic
 
         public TeacherDTO LogInTeacher(string login, string password)
         {
-            var t = mapper.Map<Teasher,TeacherDTO>((wrapper as WrapperTeacher).GetTeasher(login,password));
+            var t = mapper.Map<Teasher, TeacherDTO>((wrapper as WrapperTeacher).GetTeasher(login, password));
             return t;
         }
-      
+        public ICollection<TestDTO> GetTestFromSomeTeacher(int idTeacher)
+        {
+            var t = mapper.Map<ICollection<Test>, ICollection<TestDTO>>((wrapper as WrapperTeacher).GetTestFromSomeTeacher(idTeacher));
+            return t;
+        }
+
     }
 }

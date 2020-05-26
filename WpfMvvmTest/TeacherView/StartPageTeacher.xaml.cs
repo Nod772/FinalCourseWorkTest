@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using WpfMvvmTest.ServiceReferenceTeacher;
+using WpfMvvmTest.ViewModel;
 
 namespace WpfMvvmTest
 {
@@ -7,12 +9,17 @@ namespace WpfMvvmTest
     /// </summary>
     public partial class StartPageTeacher : Window
     {
-        public StartPageTeacher()
+        public TeacherVM teacherVM { get; set; }
+
+        public StartPageTeacher(TeacherVM teacher)
         {
             InitializeComponent();
+            teacherVM = teacher;
+            teacherVM.GetTests(teacherVM);
+
         }
 
-
+        
     }
 }
 
